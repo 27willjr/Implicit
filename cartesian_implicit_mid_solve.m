@@ -1,20 +1,23 @@
 N = [10000];
-T = [5, 10, 15,25, 50, 100];
+T = [100];
 L = 2;
-w = 8*pi;
+
 for j = 1:length(T)
-figure;
+    figure('Position', [100, 100, 800, 1000]);
     for i = 1:length(N)
-        [t, y] = implicit_midpoint([0 T(j)], [0, -L*w^2, L*w, 0], N(i), @pendulum_cartesian_odes);
-        plot(y(:, 1), y(:, 3), 'b');
+        subplot(length(N), 1, i);
+        [t, y] = implicit_midpoint([0 T(j)], [2 0 0 -1], N(i), @pendulum_cartesian_odes);
+        
+        %expected_y = -sqrt(L.^2 - y(1, :).^2);
+
+
+        plot(y(1, :), y(3, :), 'b');
         xlabel('x')
         ylabel('y')
+        title(['Nonlinear Pendulum Motion with Implicit Midpoint Method using Cartesian Coordinates : Time Length = ', num2str(T(j)), 's', ' N = ', num2str(N(i))], 'FontSize', 7');
         hold on
     end
 
-hold off
+    hold off
 
-title(['Nonlinear Pendulum Motion with Implicit Midpoint Method using Cartesian Coordinates : Time Length = ', num2str(T(j)), 's'], 'FontSize', 7');
 end
-
-%

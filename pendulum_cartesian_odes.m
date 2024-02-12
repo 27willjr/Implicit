@@ -9,5 +9,5 @@ function dydt = pendulum_cartesian_odes(t, yy)
     dydt(1) = xdot;
     dydt(2) = -(x * (xdot^2 + ydot^2 - g * y))/(x^2 + y^2);
     dydt(3) = ydot;
-    dydt(4) = -(y * (xdot^2 + ydot^2 - g*y) + g)/(x^2 + y^2);
+    dydt(4) = -g-(y * (xdot^2 + ydot^2 - g*y))/(x^2 + y^2);
 end
